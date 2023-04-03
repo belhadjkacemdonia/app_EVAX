@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1031492292186",
+    "project_id": "app-evax",
+    "storage_bucket": "app-evax.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031492292186:android:38d25e24fecbc6a6595263",
+        "android_client_info": {
+          "package_name": "com.example.evax_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031492292186-g1b0af1i5m8sb8insmamvn851s59s0nc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1zb331B0LT5uL1B2IdFPq7S1e5LX-1mw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031492292186-g1b0af1i5m8sb8insmamvn851s59s0nc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
