@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'citoyencin_1.dart';
 import 'drawer.dart';
 
 
@@ -58,7 +59,11 @@ class citoyen_avec_cin extends StatelessWidget{
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> citoyen_cin_e1()
+                   ));
+                    },
+
                       child: Text('Confirmer',
                           style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white)),
                       color: Colors.red,
