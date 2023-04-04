@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'citoyencin_1.dart';
+
 import 'drawer.dart';
 
 
@@ -28,6 +28,30 @@ class citoyen_avec_cin extends StatelessWidget{
                   Padding(padding: EdgeInsets.only(top: 8.0)),
                   Text('Etape 1 : Données Générales',
                     style:  TextStyle(color: Colors.red, fontSize: 20.0),),
+                  Padding(padding: EdgeInsets.only(top: 30.0)),
+                  TextField(
+                    decoration:  InputDecoration(
+                      labelText: "Nom",
+                      border:  OutlineInputBorder(
+                        borderRadius:  BorderRadius.circular(25.0),
+                        borderSide:  BorderSide(
+                        ),
+                      ),
+                      //fillColor: Colors.green
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 30.0)),
+                  TextField(
+                    decoration:  InputDecoration(
+                      labelText: "prénom",
+                      border:  OutlineInputBorder(
+                        borderRadius:  BorderRadius.circular(25.0),
+                        borderSide:  BorderSide(
+                        ),
+                      ),
+                      //fillColor: Colors.green
+                    ),
+                  ),
              Padding(padding: EdgeInsets.only(top: 30.0)),
                   TextField(
                decoration:  InputDecoration(
@@ -53,16 +77,49 @@ class citoyen_avec_cin extends StatelessWidget{
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 30.0)),
+                  TextField(
+                    decoration:  InputDecoration(
+                      labelText: "Email",
+                      border:  OutlineInputBorder(
+                        borderRadius:  BorderRadius.circular(25.0),
+                        borderSide:  BorderSide(
+                        ),
+                      ),
+                      //fillColor: Colors.green
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 30.0)),
+                  TextField(
+                    decoration:  InputDecoration(
+                      labelText: "mot de passe",
+                      border:  OutlineInputBorder(
+                        borderRadius:  BorderRadius.circular(25.0),
+                        borderSide:  BorderSide(
+                        ),
+                      ),
+                      //fillColor: Colors.green
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 30.0)),
+                  TextField(
+                    decoration:  InputDecoration(
+                      labelText: "Confirmer mot de passe",
+                      border:  OutlineInputBorder(
+                        borderRadius:  BorderRadius.circular(25.0),
+                        borderSide:  BorderSide(
+                        ),
+                      ),
+                      //fillColor: Colors.green
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 30.0)),
                   ButtonTheme(
                     minWidth: double.infinity,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: MaterialButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> citoyen_cin_e1()
-                   ));
-                    },
+                      onPressed: () {},
 
                       child: Text('Confirmer',
                           style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white)),
