@@ -26,7 +26,7 @@ class inscrir extends StatelessWidget{
 
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> citoyen_cin()
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn()
                   ));
                 },
                 child: Container(
