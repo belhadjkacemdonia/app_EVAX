@@ -1,14 +1,10 @@
-<<<<<<< HEAD
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'citoyen_cin.dart';
-=======
-import 'package:flutter/material.dart';
-import 'citoyen_cin.dart';
-import 'conf_signup.dart';
->>>>>>> origin/master
+
 import 'drawer.dart';
 
 class SignUp extends StatefulWidget {
@@ -19,15 +15,14 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-<<<<<<< HEAD
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController prenomController = TextEditingController();
   final TextEditingController cinController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-=======
->>>>>>> origin/master
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +47,8 @@ class _SignUpState extends State<SignUp> {
               children: [
                 SingleChildScrollView(
                   child: Form(
-<<<<<<< HEAD
                     child: Container(
-=======
 
-                    child: Container(
-                      // padding:
-                      //     EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.44),
->>>>>>> origin/master
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -67,13 +56,9 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               Center(
                                 child: Container(
-<<<<<<< HEAD
                                   padding: EdgeInsets.only(top: 100),
                                   child: const Text(
-=======
-                                  padding: EdgeInsets.only(top: 130),
-                                  child: Text(
->>>>>>> origin/master
+
                                     'EVAX\n',
                                     style: TextStyle(
                                       color: Colors.white,
@@ -91,7 +76,7 @@ class _SignUpState extends State<SignUp> {
                             margin: EdgeInsets.only(left: 35, right: 35),
                             child: Column(
                               children: [
-<<<<<<< HEAD
+
                                 TextFormField(controller: prenomController,
                                   style: TextStyle(color: Colors.black),
                                   decoration: InputDecoration(
@@ -131,9 +116,7 @@ class _SignUpState extends State<SignUp> {
                                   height: 30,
                                 ),
                                 TextFormField(controller: emailController,
-=======
-                                TextFormField(
->>>>>>> origin/master
+
                                   style: TextStyle(color: Colors.black),
                                   validator: (value) {
                                     if (value!.isEmpty) {
@@ -151,11 +134,9 @@ class _SignUpState extends State<SignUp> {
                                 SizedBox(
                                   height: 30,
                                 ),
-<<<<<<< HEAD
+
                                 TextFormField(controller: passwordController,
-=======
-                                TextFormField(
->>>>>>> origin/master
+
                                   style: TextStyle(),
                                   obscureText: true,
                                   validator: (value) {
@@ -195,20 +176,11 @@ class _SignUpState extends State<SignUp> {
                                             // foreground
                                           ),
                                           onPressed: () {
-<<<<<<< HEAD
+
                                             signup();},
                                           child: const Text(
                                             'sign up',
-=======
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Conf_signUp()));
-                                          },
-                                          child: const Text(
-                                            'suivant',
->>>>>>> origin/master
+
                                             style: TextStyle(
                                               fontSize: 20,
                                               shadows: [
@@ -265,7 +237,7 @@ class _SignUpState extends State<SignUp> {
           ),
         ));
   }
-<<<<<<< HEAD
+
   void signup() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -295,6 +267,3 @@ class _SignUpState extends State<SignUp> {
 
 }
 
-=======
-}
->>>>>>> origin/master

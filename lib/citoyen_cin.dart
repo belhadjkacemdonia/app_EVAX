@@ -2,7 +2,8 @@ import 'package:evax_app/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer.dart';
-import 'signin.dart';
+import 'profil.dart';
+import 'signup.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -65,6 +66,43 @@ class _SignInState extends State<SignIn> {
                           margin: EdgeInsets.only(left: 35, right: 35),
                           child: Column(
                             children: [
+                              TextFormField(
+                                style: TextStyle(color: Colors.black),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'email field must not be empty';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: "Email",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              TextFormField(
+                                style: TextStyle(),
+                                obscureText: true,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'password field must not be empty';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                    filled: true,
+                                    hintText: "Password",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -84,7 +122,7 @@ class _SignInState extends State<SignIn> {
                                           // foreground
                                         ),
                                         onPressed: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> citoyen_cin()
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> profil()
                                           ));
                                         },
                                         child: const Text(
@@ -114,7 +152,8 @@ class _SignInState extends State<SignIn> {
                                 children: [
                                   TextButton(
                                       onPressed: () {
-
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUp()
+                                        ));
                                       },
                                       child: Text(
                                         'Dont have an account ?',
@@ -128,6 +167,7 @@ class _SignInState extends State<SignIn> {
                               ),
                               TextButton(
                                 onPressed: () {
+
 
                                 },
                                 child: Text(
@@ -157,4 +197,5 @@ class _SignInState extends State<SignIn> {
     );
   }
 }
+
 

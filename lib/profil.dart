@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'citoyen_cin.dart';
+
 import 'drawer.dart';
 
 
@@ -12,14 +13,7 @@ class profil extends StatelessWidget{
         backgroundColor: Colors.red,),
       drawer: Mydrawer(),
 
-<<<<<<< HEAD
-    );
-  }
-}
-=======
 
     );
   }
 }
-
->>>>>>> origin/master
