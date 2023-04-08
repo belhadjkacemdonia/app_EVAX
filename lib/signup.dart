@@ -254,7 +254,7 @@ class _SignUpState extends State<SignUp> {
       });
 
       // Navigate to the home page
-      Navigator.pushNamed(context, '/home');
+      //Navigator.pushNamed(context, '/home');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
