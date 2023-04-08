@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'citoyen_cin.dart';
-import 'conf_signup.dart';
 import 'drawer.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Conf_signUp extends StatefulWidget {
+  const Conf_signUp({super.key});
 
   @override
-  _SignUpState createState() => _SignUpState();
+  _Conf_signUpState createState() => _Conf_signUpState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _Conf_signUpState extends State<Conf_signUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +34,7 @@ class _SignUpState extends State<SignUp> {
               children: [
                 SingleChildScrollView(
                   child: Form(
-
                     child: Container(
-                      // padding:
-                      //     EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.44),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -46,7 +42,7 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               Center(
                                 child: Container(
-                                  padding: EdgeInsets.only(top: 130),
+                                  padding: EdgeInsets.only(top: 100),
                                   child: Text(
                                     'EVAX\n',
                                     style: TextStyle(
@@ -65,6 +61,44 @@ class _SignUpState extends State<SignUp> {
                             margin: EdgeInsets.only(left: 35, right: 35),
                             child: Column(
                               children: [
+                                TextFormField(
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                    hintText: "Prénom",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                TextFormField(
+                                  style: TextStyle(),
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      hintText: "Nom",
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                TextFormField(
+                                  style: TextStyle(),
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      hintText: "Cin",
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
                                 TextFormField(
                                   style: TextStyle(color: Colors.black),
                                   validator: (value) {
@@ -127,10 +161,10 @@ class _SignUpState extends State<SignUp> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        Conf_signUp()));
+                                                        SignIn()));
                                           },
                                           child: const Text(
-                                            'suivant',
+                                            'SignUp',
                                             style: TextStyle(
                                               fontSize: 20,
                                               shadows: [
@@ -148,32 +182,8 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SignIn()));
-                                      },
-                                      child: Text(
-                                        'Already have an account ?',
-                                        style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+
+
                               ],
                             ),
                           )
