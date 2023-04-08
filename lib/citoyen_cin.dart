@@ -1,25 +1,17 @@
-
+import 'package:evax_app/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
-import 'auth_service.dart';
 import 'drawer.dart';
-
-import 'signup.dart';
+import 'signin.dart';
 
 class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
   _SignInState createState() => _SignInState();
 }
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-final TextEditingController emailController = TextEditingController();
-final TextEditingController passwordController = TextEditingController();
-class _SignInState extends State<SignIn> {
-  @override
-  void dispose() {
 
-    super.dispose();
-  }
+class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +32,7 @@ class _SignInState extends State<SignIn> {
           child: Stack(
             children: [
               SingleChildScrollView(
-                child: Form(key: _formKey,
+                child: Form(
 
                   child: Container(
                     // padding:
@@ -73,43 +65,6 @@ class _SignInState extends State<SignIn> {
                           margin: EdgeInsets.only(left: 35, right: 35),
                           child: Column(
                             children: [
-                              TextFormField(controller: emailController,
-                                style: TextStyle(color: Colors.black),
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'email field must not be empty';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Email",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              TextFormField(controller: passwordController,
-                                style: TextStyle(),
-                                obscureText: true,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'password field must not be empty';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    hintText: "Password",
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -129,8 +84,8 @@ class _SignInState extends State<SignIn> {
                                           // foreground
                                         ),
                                         onPressed: () {
-                                          AuthService().SignIn(context, emailController.text.trim(), passwordController.text.trim());
-
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> citoyen_cin()
+                                          ));
                                         },
                                         child: const Text(
                                           'sign In',
@@ -159,8 +114,7 @@ class _SignInState extends State<SignIn> {
                                 children: [
                                   TextButton(
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUp()
-                                        ));
+
                                       },
                                       child: Text(
                                         'Dont have an account ?',
@@ -174,7 +128,6 @@ class _SignInState extends State<SignIn> {
                               ),
                               TextButton(
                                 onPressed: () {
-
 
                                 },
                                 child: Text(

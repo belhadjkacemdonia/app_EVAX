@@ -1,33 +1,15 @@
-<<<<<<< HEAD
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'citoyen_cin.dart';
-=======
-import 'package:flutter/material.dart';
-import 'citoyen_cin.dart';
-import 'conf_signup.dart';
->>>>>>> origin/master
 import 'drawer.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Conf_signUp extends StatefulWidget {
+  const Conf_signUp({super.key});
 
   @override
-  _SignUpState createState() => _SignUpState();
+  _Conf_signUpState createState() => _Conf_signUpState();
 }
 
-class _SignUpState extends State<SignUp> {
-<<<<<<< HEAD
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController prenomController = TextEditingController();
-  final TextEditingController cinController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-=======
->>>>>>> origin/master
+class _Conf_signUpState extends State<Conf_signUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +34,7 @@ class _SignUpState extends State<SignUp> {
               children: [
                 SingleChildScrollView(
                   child: Form(
-<<<<<<< HEAD
                     child: Container(
-=======
-
-                    child: Container(
-                      // padding:
-                      //     EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.44),
->>>>>>> origin/master
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -67,13 +42,8 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               Center(
                                 child: Container(
-<<<<<<< HEAD
                                   padding: EdgeInsets.only(top: 100),
-                                  child: const Text(
-=======
-                                  padding: EdgeInsets.only(top: 130),
                                   child: Text(
->>>>>>> origin/master
                                     'EVAX\n',
                                     style: TextStyle(
                                       color: Colors.white,
@@ -91,8 +61,7 @@ class _SignUpState extends State<SignUp> {
                             margin: EdgeInsets.only(left: 35, right: 35),
                             child: Column(
                               children: [
-<<<<<<< HEAD
-                                TextFormField(controller: prenomController,
+                                TextFormField(
                                   style: TextStyle(color: Colors.black),
                                   decoration: InputDecoration(
                                     hintText: "Prénom",
@@ -104,7 +73,7 @@ class _SignUpState extends State<SignUp> {
                                 SizedBox(
                                   height: 30,
                                 ),
-                                TextFormField(controller: nameController,
+                                TextFormField(
                                   style: TextStyle(),
                                   obscureText: true,
                                   decoration: InputDecoration(
@@ -117,7 +86,7 @@ class _SignUpState extends State<SignUp> {
                                 SizedBox(
                                   height: 30,
                                 ),
-                                TextFormField(controller: cinController,
+                                TextFormField(
                                   style: TextStyle(),
                                   obscureText: true,
                                   decoration: InputDecoration(
@@ -130,10 +99,7 @@ class _SignUpState extends State<SignUp> {
                                 SizedBox(
                                   height: 30,
                                 ),
-                                TextFormField(controller: emailController,
-=======
                                 TextFormField(
->>>>>>> origin/master
                                   style: TextStyle(color: Colors.black),
                                   validator: (value) {
                                     if (value!.isEmpty) {
@@ -151,11 +117,7 @@ class _SignUpState extends State<SignUp> {
                                 SizedBox(
                                   height: 30,
                                 ),
-<<<<<<< HEAD
-                                TextFormField(controller: passwordController,
-=======
                                 TextFormField(
->>>>>>> origin/master
                                   style: TextStyle(),
                                   obscureText: true,
                                   validator: (value) {
@@ -195,20 +157,14 @@ class _SignUpState extends State<SignUp> {
                                             // foreground
                                           ),
                                           onPressed: () {
-<<<<<<< HEAD
-                                            signup();},
-                                          child: const Text(
-                                            'sign up',
-=======
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        Conf_signUp()));
+                                                        SignIn()));
                                           },
                                           child: const Text(
-                                            'suivant',
->>>>>>> origin/master
+                                            'SignUp',
                                             style: TextStyle(
                                               fontSize: 20,
                                               shadows: [
@@ -226,32 +182,8 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SignIn()));
-                                      },
-                                      child: Text(
-                                        'Already have an account ?',
-                                        style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+
+
                               ],
                             ),
                           )
@@ -265,36 +197,4 @@ class _SignUpState extends State<SignUp> {
           ),
         ));
   }
-<<<<<<< HEAD
-  void signup() async {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim());
-
-      // Create a document in the "Users" collection with the same ID as the authenticated user
-      FirebaseFirestore.instance.collection('Users').doc(userCredential.user?.uid).set({
-        'nom': nameController.text.trim(),
-        'prenom': prenomController.text.trim(),
-        'cin': cinController.text.trim(),
-        'email': emailController.text.trim(),
-      });
-
-      // Navigate to the home page
-      Navigator.pushNamed(context, '/home');
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
-    }
-  } catch (e) {
-  print(e);
-  }}
-
 }
-
-=======
-}
->>>>>>> origin/master
