@@ -48,7 +48,6 @@ class PassportSignUp extends StatelessWidget {
               return null;
             },
             style: TextStyle(),
-            obscureText: true,
             decoration: InputDecoration(
                 filled: true,
                 hintText: "Nom",
@@ -68,7 +67,6 @@ class PassportSignUp extends StatelessWidget {
               return null;
             },
             style: TextStyle(),
-            obscureText: true,
             decoration: InputDecoration(
                 filled: true,
                 hintText: "Pasport",
@@ -99,7 +97,7 @@ class PassportSignUp extends StatelessWidget {
             height: 30,
           ),
           TextFormField(
-            controller: passpotController,
+            controller: passwordController,
             style: TextStyle(),
             obscureText: true,
             validator: (value) {
