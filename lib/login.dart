@@ -37,14 +37,14 @@ class _SignInState extends State<SignIn> {
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.red.shade900,
-                Colors.red.shade300,
-                Colors.blue.shade600,
-              ],
-            )),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.red.shade900,
+            Colors.red.shade300,
+            Colors.blue.shade600,
+          ],
+        )),
         child: Center(
           child: Stack(
             children: [
@@ -121,21 +121,21 @@ class _SignInState extends State<SignIn> {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
                                     width: 250,
                                     height: 50,
                                     child: Padding(
                                       padding:
-                                      const EdgeInsets.only(left: 80.0),
+                                          const EdgeInsets.only(left: 80.0),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           foregroundColor: Colors.white,
                                           backgroundColor: Color(000000),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(30.0),
+                                                BorderRadius.circular(30.0),
                                           ),
                                           // foreground
                                         ),
@@ -172,7 +172,7 @@ class _SignInState extends State<SignIn> {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   TextButton(
                                       onPressed: () {

@@ -9,11 +9,11 @@ class CinSignUp extends StatelessWidget {
 
   const CinSignUp(
       {super.key,
-        required this.nameController,
-        required this.prenomController,
-        required this.cinController,
-        required this.emailController,
-        required this.passwordController});
+      required this.nameController,
+      required this.prenomController,
+      required this.cinController,
+      required this.emailController,
+      required this.passwordController});
 
   @override
   Widget build(BuildContext context) {

@@ -9,12 +9,11 @@ class PassportSignUp extends StatelessWidget {
 
   const PassportSignUp(
       {super.key,
-        required this.nameController,
-        required this.prenomController,
-        required this.passpotController,
-        required this.emailController,
-        required this.passwordController});
-
+      required this.nameController,
+      required this.prenomController,
+      required this.passpotController,
+      required this.emailController,
+      required this.passwordController});
   @override
   Widget build(BuildContext context) {
     return Container(

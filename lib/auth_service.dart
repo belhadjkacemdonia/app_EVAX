@@ -10,32 +10,30 @@ class AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
 
 
- /* void SignUp(String nom,String prenom,String email, String password, String cin, String trim) async {
+ /*
+  Future SignUp(BuildContext context, String email, String password) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim());
-
-      // Create a document in the "Users" collection with the same ID as the authenticated user
-      FirebaseFirestore.instance.collection('Users').doc(userCredential.user?.uid).set({
-        'nom': nameController.text.trim(),
-        'prenom': prenomController.text.trim(),
-        'cin': cinController.text.trim(),
-        'email': emailController.text.trim(),
-      });
-
-      // Navigate to the home page
-      Navigator.pushNamed(context as BuildContext, '/home');
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
+      if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
     }
-  } catch (e) {
-  print(e);
-  }}*/
+    navigatorkey.currentState!.popUntil((route) => route.isFirst);
+  }
+*/
 
   Future<void> addUser(String nom,String prenom,String email,String cin ) async {
     // Generate a new document ID
