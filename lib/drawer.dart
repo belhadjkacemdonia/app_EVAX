@@ -10,8 +10,9 @@ import 'gallery.dart';
 import 'acceuil.dart';
 import 'contact.dart';
 import 'espace_citoyen.dart';
-import 'inscrit_pharmacie.dart';
+import 'signup_pharmacie.dart';
 import 'login.dart';
+import 'login_pharmacie.dart';
 
 class Mydrawer extends StatefulWidget {
   const Mydrawer({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _MydrawerState extends State<Mydrawer> {
   final User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
+
     return Drawer(
       //menu
       child: ListView(
@@ -88,9 +90,25 @@ class _MydrawerState extends State<Mydrawer> {
                       ],
                     ),
                   );
+
+                }else if(!snapshot.hasData){
+                  CustomListTile(
+                      Icons.home,
+                      'Acceuil',
+                          () => Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => acceuil())));
+                  CustomListTile(
+                      Icons.login,
+                      'S"inscrire',
+                          () => Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => SignIn())));
+
                 }
+
                 return CircularProgressIndicator.adaptive();
-              }),
+              }
+              ),
+
           CustomListTile(
               Icons.home,
               'Acceuil',
@@ -112,7 +130,7 @@ class _MydrawerState extends State<Mydrawer> {
               () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => inscrit_pharmacie()))),
+                      builder: (context) => SignInPharmacie()))),
           CustomListTile(
               Icons.person,
               'Espace Citoyen',
@@ -126,6 +144,7 @@ class _MydrawerState extends State<Mydrawer> {
           CustomListTile(Icons.logout, 'SignOut', () => AuthService().LogOut()),
         ],
       ),
+
     );
   }
 }
