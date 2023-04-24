@@ -4,12 +4,15 @@ import 'package:evax_app/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'CustomListTile.dart';
 import 'gallery.dart';
 import 'acceuil.dart';
 import 'contact.dart';
 import 'espace_citoyen.dart';
+import 'modifier_profile.dart';
 import 'signup_pharmacie.dart';
 import 'login.dart';
 import 'login_pharmacie.dart';
@@ -67,7 +70,13 @@ class _MydrawerState extends State<Mydrawer> {
                             ),
                             IconButton(
                               icon: Icon(Icons.edit, color: Colors.white),
-                              onPressed: () {},
+                              onPressed: () {
+                                // Appel de la page de mise à jour du profil
+                                Get.to(() => UpdateProfile())?.then((value) {
+                                  // Mettre à jour l'image de profil après la mise à jour
+                                  setState(() {});
+                                });
+                              },
                             ),
                           ],
                         ),
@@ -90,18 +99,6 @@ class _MydrawerState extends State<Mydrawer> {
                       ],
                     ),
                   );
-
-                }else if(!snapshot.hasData){
-                  CustomListTile(
-                      Icons.home,
-                      'Acceuil',
-                          () => Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => acceuil())));
-                  CustomListTile(
-                      Icons.login,
-                      'S"inscrire',
-                          () => Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => SignIn())));
 
                 }
 

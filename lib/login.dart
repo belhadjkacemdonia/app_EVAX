@@ -42,7 +42,7 @@ class _SignInState extends State<SignIn> {
           colors: [
             Colors.red.shade900,
             Colors.red.shade300,
-            Colors.blue.shade600,
+            Colors.blue.shade200,
           ],
         )),
         child: Center(
