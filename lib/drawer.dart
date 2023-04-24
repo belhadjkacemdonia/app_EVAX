@@ -24,10 +24,11 @@ class Mydrawer extends StatefulWidget {
   State<Mydrawer> createState() => _MydrawerState();
 }
 
-CollectionReference users = FirebaseFirestore.instance.collection('Users');
+
 
 class _MydrawerState extends State<Mydrawer> {
   final User? user = FirebaseAuth.instance.currentUser;
+  CollectionReference users = FirebaseFirestore.instance.collection('Users');
   @override
   Widget build(BuildContext context) {
 

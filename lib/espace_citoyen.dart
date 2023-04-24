@@ -1,65 +1,240 @@
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'drawer.dart';
 
 
-class citoyen extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(title: Text("citoyen"),
-        backgroundColor: Colors.red,),
-      drawer: Mydrawer(),
-      body: espace_citoyen(),
 
-    );
-  }
+class citoyen extends StatefulWidget{
+  const citoyen({super.key});
+
+  @override
+  espace_citoyenState createState() => espace_citoyenState();
 }
-class espace_citoyen extends StatelessWidget{
+class espace_citoyenState extends State<citoyen>{
+  final user = FirebaseAuth.instance.currentUser;
+  CollectionReference users = FirebaseFirestore.instance.collection('Users');
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child:  Container(
-        child:  Center(
-          child:  Column(
-            children : [
-              Padding(padding: EdgeInsets.only(top: 8.0)),
-              Text('Veuillez vous connecter à votre espace citoyen',
-                style:  TextStyle(color: Colors.red, fontSize: 20.0),),
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              TextField(
-                decoration:  InputDecoration(
-                  labelText: "Numéro d'inscription EVAX",
-                  border:  OutlineInputBorder(
-                    borderRadius:  BorderRadius.circular(25.0),
-                    borderSide:  BorderSide(
+    return FutureBuilder<DocumentSnapshot>(
+        future: users.doc(user!.uid).get(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text("Something went wrong");
+          }
+
+          if (snapshot.hasData && !snapshot.data!.exists) {
+            return Text("Document does not exist");
+          }
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> data =
+            snapshot.data!.data() as Map<String, dynamic>;
+
+            return GestureDetector(
+              onTap: () {
+                FocusScopeNode currentFocus = FocusScope.of(context);
+
+                if (!currentFocus.hasPrimaryFocus) {
+                  currentFocus.unfocus();
+                }
+              },
+              child: Scaffold(
+
+                  appBar: AppBar(
+                    title: Text(
+                      "Espace Citoyen",
                     ),
                   ),
-                  //fillColor: Colors.green
-                ),
-              ),
+                  body: Container(
+                    padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
 
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              ButtonTheme(
-                minWidth: double.infinity,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: MaterialButton(
-                  onPressed: () {},
-                  child: Text('Confirmer',
-                      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white)),
-                  color: Colors.red,
-
-
-                ),
-              ),
-            ],
+                          SizedBox(height: 10),
+                          Text(
+                            'Informations personnelles',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 30),
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            children: [
+                              Icon(Icons.person, color: Colors.black),
+                              SizedBox(width: 10),
+                              Text(
+                                "NOM: ${data['nom']}",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Icon(Icons.person, color: Colors.black),
+                              SizedBox(width: 10),
+                              Text(
+                                "PRENOM: ${data['prenom']}",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Icon(Icons.badge, color: Colors.black),
+                              SizedBox(width: 10),
+                              Text(
+                                "CIN: ${data['cin']}",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Icon(Icons.email, color: Colors.black),
+                              SizedBox(width: 10),
+                              Text(
+                                "EMAIL: ${data['email']}",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          GestureDetector(
+                            onTap: () {
+                              // action à effectuer lorsque le conteneur est pressé
+                            },
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  color: Colors.red.shade300,
+                                ),
+                                margin: EdgeInsets.only(bottom: 15, top: 30),
+                                width: 400.0,
+                                height: 120.0,
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.vaccines, color: Colors.white, size: 30),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        'consulter votre certificat de vaccination',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          GestureDetector(
+                            onTap: () {
+                              // action à effectuer lorsque le conteneur est pressé
+                            },
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  color: Colors.red.shade400,
+                                ),
+                                margin: EdgeInsets.only(bottom: 15, top: 30),
+                                width: 400.0,
+                                height: 120.0,
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.paste_sharp, color: Colors.white, size: 30),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        'consulter votre Pass vaccinal',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          GestureDetector(
+                            onTap: () {
+                              // action à effectuer lorsque le conteneur est pressé
+                            },
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  color: Colors.red,
+                                ),
+                                margin: EdgeInsets.only(bottom: 15, top: 30),
+                                width: 400.0,
+                                height: 120.0,
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.paste_sharp, color: Colors.white, size: 30),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        'consulter votre Pass vaccinal Européen',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
           ),
-        ),
-      ),
-    );
+                  ),
+              ),
+
+            );
+          }
+          return SizedBox();
+        });
   }
 
 }
+
+
+
