@@ -124,7 +124,7 @@ class _SignUpState extends State<SignUp> {
                                       : PassportSignUp(
                                           nameController: nameController,
                                           prenomController: prenomController,
-                                          passpotController: passportController,
+                                          passportController: passportController,
                                           emailController: emailController,
                                           passwordController:
                                               passwordController),
@@ -229,6 +229,7 @@ class _SignUpState extends State<SignUp> {
         'pere': namepereController.text.trim(),
         'mere': namemereController.text.trim(),
         'email': emailController.text.trim(),
+        'passport': passportController.text.trim(),
         'type': _selectedOption == "Connecter avec CIN"
             ? "cin"
             : _selectedOption == "Connecter en tanque mineur"

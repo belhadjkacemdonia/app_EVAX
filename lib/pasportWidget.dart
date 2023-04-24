@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PassportSignUp extends StatelessWidget {
   final TextEditingController? nameController;
   final TextEditingController? prenomController;
-  final TextEditingController? passpotController;
+  final TextEditingController? passportController;
   final TextEditingController? emailController;
   final TextEditingController? passwordController;
 
@@ -11,7 +11,7 @@ class PassportSignUp extends StatelessWidget {
       {super.key,
       required this.nameController,
       required this.prenomController,
-      required this.passpotController,
+      required this.passportController,
       required this.emailController,
       required this.passwordController});
   @override
@@ -59,7 +59,7 @@ class PassportSignUp extends StatelessWidget {
             height: 30,
           ),
           TextFormField(
-            controller: passpotController,
+            controller: passportController,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Passport field must not be empty';
