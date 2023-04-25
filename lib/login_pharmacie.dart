@@ -2,7 +2,10 @@ import 'package:evax_app/auth_service.dart';
 import 'package:evax_app/pharmacie.dart';
 import 'package:evax_app/signup_pharmacie.dart';
 import 'package:evax_app/utils/color_utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'drawer.dart';
 import 'profil.dart';
@@ -19,13 +22,13 @@ class SignInPharmacie extends StatefulWidget {
 
 class _SignInPharmacieState extends State<SignInPharmacie> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailphController = TextEditingController();
+  final TextEditingController passwordphController = TextEditingController();
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    emailphController.dispose();
+    passwordphController.dispose();
     super.dispose();
   }
 
@@ -75,7 +78,7 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
                           child: Column(
                             children: [
                               TextFormField(
-                                controller: emailController,
+                                controller: emailphController,
                                 style: TextStyle(color: Colors.black),
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -94,7 +97,7 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
                                 height: 30,
                               ),
                               TextFormField(
-                                controller: passwordController,
+                                controller: passwordphController,
                                 style: TextStyle(),
                                 obscureText: true,
                                 validator: (value) {
@@ -135,12 +138,19 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
                                           // foreground
                                         ),
                                         onPressed: () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            SignInph(
+                                                context,
+                                                emailphController.text.trim(),
+                                                passwordphController.text.trim());
+
                                           Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                           builder: (context) => pharmacie()));
 
-                                        },
+                                          } },
                                         child: const Text(
                                           'sign In',
                                           style: TextStyle(
@@ -212,5 +222,25 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
         ),
       ),
     );
+  }
+  Future SignInph(BuildContext context, String email, String password) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar("Required", e.message.toString(),
+          icon: const Icon(
+            Icons.warning_amber_rounded,
+          ),
+          backgroundColor: Colors.white,
+          snackPosition: SnackPosition.BOTTOM);
+    }
   }
 }

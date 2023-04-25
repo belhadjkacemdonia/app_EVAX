@@ -2,7 +2,6 @@ import 'package:evax_app/auth_service.dart';
 import 'package:evax_app/signup_pharmacie.dart';
 import 'package:evax_app/utils/color_utils.dart';
 import 'package:flutter/material.dart';
-
 import 'drawer.dart';
 import 'login_pharmacie.dart';
 import 'profil.dart';

@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import 'drawer.dart';
 import 'login_pharmacie.dart';
+import 'main.dart';
 
 
 class SignUp_Pharmacie extends StatefulWidget{
@@ -14,6 +17,11 @@ class SignUp_Pharmacie extends StatefulWidget{
 
 class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController emailphController = TextEditingController();
+  final TextEditingController namephController = TextEditingController();
+  final TextEditingController localController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordphController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +74,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                             return null;
                           },
                           style: TextStyle(),
-                          obscureText: true,
+                          controller: namephController,
                           decoration: InputDecoration(
                               filled: true,
                               hintText: "Nom de la pharmacie",
@@ -78,7 +86,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           height: 30,
                         ),
                         TextFormField(
-
+                          controller: phoneController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Phone field must not be empty';
@@ -86,7 +94,6 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                             return null;
                           },
                           style: TextStyle(),
-                          obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
                               hintText: "Phone",
@@ -98,7 +105,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           height: 30,
                         ),
                         TextFormField(
-
+                          controller: localController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Location field must not be empty';
@@ -106,7 +113,6 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                             return null;
                           },
                           style: TextStyle(),
-                          obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
                               hintText: "Location",
@@ -118,7 +124,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           height: 30,
                         ),
                         TextFormField(
-
+                          controller: emailphController,
                           style: TextStyle(color: Colors.black),
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -137,7 +143,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           height: 30,
                         ),
                         TextFormField(
-
+                          controller: passwordphController,
                           style: TextStyle(),
                           obscureText: true,
                           validator: (value) {
@@ -184,8 +190,13 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                                           // foreground
                                         ),
                                         onPressed: () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            signuph();
 
-                                        },
+                                          Navigator.push(
+                                              context, MaterialPageRoute(builder: (context) => SignInPharmacie()));
+                                          }},
                                         child: const Text(
                                           'sign up',
                                           style: TextStyle(
@@ -239,5 +250,30 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
           ),
         ));
   }
+  void signuph() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+          email: emailphController.text.trim(),
+          password: passwordphController.text.trim());
 
+      // Create a document in the "Users" collection with the same ID as the authenticated user
+      FirebaseFirestore.instance
+          .collection('Usersph')
+          .doc(userCredential.user?.uid)
+          .set({
+        'nomph': namephController.text.trim(),
+        'Phone': phoneController.text.trim(),
+        'location': localController.text.trim(),
+        'email': emailphController.text.trim(),
+      });
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar("Required", e.message.toString(),
+          icon: const Icon(
+            Icons.warning_amber_rounded,
+          ),
+          backgroundColor: Colors.white,
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
 }

@@ -1,7 +1,11 @@
+import 'package:evax_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'auth_service.dart';
 import 'drawer.dart';
+import 'login_pharmacie.dart';
+import 'main.dart';
 
 class pharmacie extends StatefulWidget {
   const pharmacie({super.key});
@@ -10,6 +14,8 @@ class pharmacie extends StatefulWidget {
   pharmacieState createState() => pharmacieState();
 }
 class pharmacieState extends State<pharmacie> {
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -26,8 +32,7 @@ class pharmacieState extends State<pharmacie> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             TextFormField(
-
-
+                              controller: dateController,
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 hintText: "Date de la dose",
@@ -41,8 +46,7 @@ class pharmacieState extends State<pharmacie> {
                               height: 30,
                             ),
                             TextFormField(
-
-
+                              controller: nameController,
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 hintText: "Nom de la dose",
@@ -58,7 +62,9 @@ class pharmacieState extends State<pharmacie> {
 
 
                             GestureDetector(
-                              onTap: () {
+                              onTap: () {addUser(
+                                  nameController.text.trim(),
+                                  dateController.text.trim() );
 
 
                               },
@@ -84,8 +90,12 @@ class pharmacieState extends State<pharmacie> {
                             ),
                             GestureDetector(
                               onTap: () {
-
-
+                                AuthService().LogOut();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SignInPharmacie()));
                               },
                               child: Container(
                                 width: 180,
@@ -111,6 +121,17 @@ class pharmacieState extends State<pharmacie> {
             );
 
   }
+  Future<void> addUser(
+      String nom, String date) async {
+    // Generate a new document ID
+    final newDocRef = FirebaseFirestore.instance.collection('desponibliter').doc();
+    //final newDocId = newDocRef.id;
 
+    // Create the new document with the ID
+    await newDocRef.set({
+      'nom': nom,
+      'date': date,
+    });
+  }
 }
 

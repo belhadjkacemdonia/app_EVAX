@@ -123,13 +123,6 @@ class _MydrawerState extends State<Mydrawer> {
               () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => contact()))),
           CustomListTile(
-              Icons.local_pharmacy,
-              'Inscription pharmacie',
-              () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SignInPharmacie()))),
-          CustomListTile(
               Icons.person,
               'Espace Citoyen',
               () => Navigator.push(

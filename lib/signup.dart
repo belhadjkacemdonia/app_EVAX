@@ -155,6 +155,8 @@ class _SignUpState extends State<SignUp> {
                                           if (_formKey.currentState!
                                               .validate()) {
                                             signup();
+                                            Navigator.push(
+                                                context, MaterialPageRoute(builder: (context) => SignIn()));
                                           }
                                         },
                                         child: const Text(
@@ -244,6 +246,6 @@ class _SignUpState extends State<SignUp> {
           backgroundColor: Colors.white,
           snackPosition: SnackPosition.BOTTOM);
     }
-    navigatorkey.currentState!.popUntil((route) => route.isFirst);
+
   }
 }
