@@ -1,8 +1,10 @@
 import 'package:evax_app/auth_service.dart';
+import 'package:evax_app/signup_pharmacie.dart';
 import 'package:evax_app/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer.dart';
+import 'login_pharmacie.dart';
 import 'profil.dart';
 import 'signup.dart';
 
@@ -203,9 +205,27 @@ class _SignInState extends State<SignIn> {
                                   ),
                                 ),
                               ),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SignInPharmacie()));
+                                  },
+                                  child: Text(
+                                    'SignIn pharmacie',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
+                                  )),
+
                               SizedBox(
                                 height: 230,
                               ),
+
                             ],
                           ),
                         )

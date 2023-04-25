@@ -56,25 +56,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                     margin: EdgeInsets.only(left: 35, right: 35),
                     child: Column(
                       children: [
-                        TextFormField(
 
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Prenom field must not be empty';
-                            }
-                            return null;
-                          },
-                          style: TextStyle(color: Colors.black),
-                          decoration: InputDecoration(
-                            hintText: "Prénom",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
                         TextFormField(
 
                           validator: (value) {
@@ -87,7 +69,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
-                              hintText: "Nom",
+                              hintText: "Nom de la pharmacie",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               )),

@@ -1,4 +1,5 @@
 import 'package:evax_app/auth_service.dart';
+import 'package:evax_app/pharmacie.dart';
 import 'package:evax_app/signup_pharmacie.dart';
 import 'package:evax_app/utils/color_utils.dart';
 import 'package:flutter/material.dart';
@@ -134,13 +135,11 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
                                           // foreground
                                         ),
                                         onPressed: () {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            AuthService().SignIn(
-                                                context,
-                                                emailController.text.trim(),
-                                                passwordController.text.trim());
-                                          }
+                                          Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                          builder: (context) => pharmacie()));
+
                                         },
                                         child: const Text(
                                           'sign In',

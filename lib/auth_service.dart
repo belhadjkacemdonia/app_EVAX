@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,7 @@ import 'main.dart';
 class AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-
- /*
+  /*
   Future SignUp(BuildContext context, String email, String password) async {
     showDialog(
       context: context,
@@ -35,25 +33,20 @@ class AuthService {
   }
 */
 
-  Future<void> addUser(String nom,String prenom,String email,String cin ) async {
+  Future<void> addUser(
+      String nom, String prenom, String email, String cin) async {
     // Generate a new document ID
     final newDocRef = FirebaseFirestore.instance.collection('Users').doc();
     //final newDocId = newDocRef.id;
 
     // Create the new document with the ID
     await newDocRef.set({
-
       'nom': nom,
       'prenom': prenom,
       'cin': cin,
       'email': email,
-
-
-
-
     });
   }
-
 
   Future SignIn(BuildContext context, String email, String password) async {
     showDialog(
@@ -127,6 +120,4 @@ class AuthService {
       Navigator.of(context).pop();
     }
   }
-
-
 }
