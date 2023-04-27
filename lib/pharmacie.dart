@@ -26,6 +26,7 @@ class pharmacieState extends State<pharmacie> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Information"),
+        automaticallyImplyLeading: false, //supprimer la flèche de retour sur la barre d'applications
         actions: [
           PopupMenuButton(
             onSelected: (value) {
