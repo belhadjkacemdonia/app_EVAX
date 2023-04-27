@@ -137,12 +137,9 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
                                             SignInph(
                                                 context,
                                                 emailphController.text.trim(),
-                                                passwordphController.text.trim());
+                                                passwordphController.text.trim()).then((value) => Get.to(pharmacie()));
 
-                                          Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                          builder: (context) => pharmacie()));
+
 
                                           } },
                                         child: const Text(

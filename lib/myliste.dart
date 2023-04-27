@@ -12,7 +12,32 @@ class myliste extends StatefulWidget {
   mylisteState createState() => mylisteState();
 }
 class mylisteState extends State<myliste> {
-  final CollectionReference disponibiliterRef = FirebaseFirestore.instance.collection('Disponibiliter');
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? userUID;
+
+
+  User? getCurrentUser() {
+    final User? user = _auth.currentUser;
+    if (user != null) {
+      return user;
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  void initState() {
+
+    User? user = getCurrentUser();
+    setState(() {
+      userUID=user!.uid;
+
+    });
+    print(user!.uid);
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +76,7 @@ class mylisteState extends State<myliste> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: disponibiliterRef.snapshots(),
+        stream: FirebaseFirestore.instance.collection('Usersph').doc(userUID!).collection("Disponibiliter").snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Erreur : ${snapshot.error}');
@@ -65,7 +90,7 @@ class mylisteState extends State<myliste> {
               DocumentSnapshot documentSnapshot = snapshot.data!.docs[index];
               Map<String, dynamic> data =
               documentSnapshot.data() as Map<String, dynamic>;
-              String? nom = data['nom'] as String?;
+              String? nom = data['nomVacin'] as String?;
               String? date = data['date'] as String?;
               return ListTile(
                 title: Text('nom : $nom',style: TextStyle(

@@ -21,6 +21,39 @@ class pharmacieState extends State<pharmacie> {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
 
+
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? userUID;
+
+
+  User? getCurrentUser() {
+    final User? user = _auth.currentUser;
+    if (user != null) {
+      return user;
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  void dispose() {
+    dateController.dispose();
+    nameController.dispose();
+    super.dispose();
+  }
+@override
+  void initState() {
+
+    User? user = getCurrentUser();
+    setState(() {
+      userUID=user!.uid;
+
+    });
+    print(user!.uid);
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,10 +126,16 @@ class pharmacieState extends State<pharmacie> {
               ),
               GestureDetector(
                 onTap: () {
-                  addUser(
+                  FirebaseFirestore.instance.collection('Usersph').doc(userUID).collection('Disponibiliter').add({
+                    'nomVacin': nameController.text.trim(),
+                    'date': dateController.text.trim(),
+                  }).then((value) {nameController.clear();
+                  dateController.clear();});
+                  /*addUser(getCurrentUser()!.uid,
                     nameController.text.trim(),
                     dateController.text.trim(),
-                  );
+                  ).then((value){ print("ffff");nameController.clear();
+                  dateController.clear();} )*/;
                 },
                 child: Container(
                   width: 180,
@@ -124,14 +163,16 @@ class pharmacieState extends State<pharmacie> {
     );
   }
 
-  Future<void> addUser(String nom, String date) async {
+  Future<void> addUser(String nom, String date,String phId) async {
+
+
     // Generate a new document ID
-    final newDocRef = FirebaseFirestore.instance.collection('Disponibiliter').doc();
+    final   collectionReference = FirebaseFirestore.instance.collection('Usersph').doc(phId).collection('Disponibiliter');
     //final newDocId = newDocRef.id;
 
     // Create the new document with the ID
-    await newDocRef.set({
-      'nom': nom,
+    await collectionReference.add({
+      'nomVacin': nom,
       'date': date,
     });
   }

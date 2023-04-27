@@ -1,9 +1,13 @@
 import 'package:evax_app/gallery.dart';
+import 'package:evax_app/pass_europ.dart';
+import 'package:evax_app/pass_vacc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'certif_vacc.dart';
 import 'drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'liste_pharmacie.dart';
 import 'login.dart';
 
 class acceuil extends StatelessWidget {
@@ -62,32 +66,11 @@ class acceuil extends StatelessWidget {
                     color: Colors.red,
                     fontSize: 18.0),
               ),
+              SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignIn()));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.red,
-                  ),
-                  margin: EdgeInsets.only(bottom: 15, top: 30),
-                  width: 400.0,
-                  height: 50.0,
-                  child: Center(
-                    child: Text(
-                      'INSCRIVEZ-VOUS À LA CAMPAGNE DE VACCINATION',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignIn()));
+                      MaterialPageRoute(builder: (context) => liste_pharmacie()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -99,15 +82,129 @@ class acceuil extends StatelessWidget {
                   height: 50.0,
                   child: Center(
                     child: Text(
-                      'LISTE DES CABINETS MÉDICAUX ET LABORATOIRES DE VACCINATION',
+                      'LISTE DES PHARMACIES',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: 200.0,
+              SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => certif_vacc()));
+                },
+                child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.red.shade300,
+                    ),
+                    margin: EdgeInsets.only(bottom: 15, top: 30),
+                    width: 400.0,
+                    height: 120.0,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.vaccines,
+                              color: Colors.white, size: 30),
+                          SizedBox(width: 5),
+                          Text(
+                            'Consulter votre certificat de vaccination',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 3),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => pass_vacc()));
+                },
+                child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.red.shade400,
+                    ),
+                    margin: EdgeInsets.only(bottom: 15, top: 30),
+                    width: 400.0,
+                    height: 120.0,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.paste_sharp,
+                              color: Colors.white, size: 30),
+                          SizedBox(width: 5),
+                          Text(
+                            'Consulter votre Pass vaccinal',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 3),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => pass_europ()));
+                },
+                child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.red,
+                    ),
+                    margin: EdgeInsets.only(bottom: 15, top: 30),
+                    width: 400.0,
+                    height: 120.0,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.paste_sharp,
+                              color: Colors.white, size: 30),
+                          SizedBox(width: 5),
+                          Text(
+                            'Consulter votre Pass vaccinal Européen',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
