@@ -35,7 +35,6 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
       appBar: AppBar(
         title: Text("Sign IN"),
         backgroundColor: Colors.red,

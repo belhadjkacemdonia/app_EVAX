@@ -30,11 +30,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
-      appBar: AppBar(
-        title: Text("Sign IN"),
-        backgroundColor: Colors.red,
-      ),
+
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(

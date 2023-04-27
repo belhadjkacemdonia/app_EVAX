@@ -26,11 +26,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Mydrawer(),
-        appBar: AppBar(
-          title: Text("Sign IN"),
-          backgroundColor: Colors.red,
-        ),
+
         body: Container(
 
           child: Center(

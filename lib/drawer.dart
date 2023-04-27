@@ -113,16 +113,6 @@ class _MydrawerState extends State<Mydrawer> {
               () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => acceuil()))),
           CustomListTile(
-              Icons.login,
-              'S"inscrire',
-              () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => SignIn()))),
-          CustomListTile(
-              Icons.tty,
-              'Contacter nous',
-              () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => contact()))),
-          CustomListTile(
               Icons.person,
               'Espace Citoyen',
               () => Navigator.push(
@@ -132,6 +122,12 @@ class _MydrawerState extends State<Mydrawer> {
               'Gallery ',
               () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => gallery()))),
+          CustomListTile(
+              Icons.tty,
+              'Contacter nous',
+                  () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => contact()))),
+
           CustomListTile(Icons.logout, 'SignOut', () => AuthService().LogOut()),
         ],
       ),
