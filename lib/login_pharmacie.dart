@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import 'drawer.dart';
-import 'profil.dart';
-import 'signup.dart';
+
 
 class SignInPharmacie extends StatefulWidget {
   const SignInPharmacie({Key? key}) : super(key: key);
@@ -35,10 +33,7 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Sign IN"),
-        backgroundColor: Colors.red,
-      ),
+
       body: Container(
 
         child: Center(
