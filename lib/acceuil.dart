@@ -1,6 +1,7 @@
 import 'package:evax_app/gallery.dart';
 import 'package:evax_app/pass_europ.dart';
 import 'package:evax_app/pass_vacc.dart';
+import 'package:evax_app/reservation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'certif_vacc.dart';
@@ -69,8 +70,10 @@ class acceuil extends StatelessWidget {
               SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => liste_pharmacie()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => liste_pharmacie()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -89,13 +92,34 @@ class acceuil extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => reservation()));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: Colors.blue,
+                  ),
+                  margin: EdgeInsets.only(bottom: 15, top: 5),
+                  width: 400.0,
+                  height: 50.0,
+                  child: Center(
+                    child: Text(
+                      'MES RESERVATION',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(height: 15),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => certif_vacc()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => certif_vacc()));
                 },
                 child: Center(
                   child: Container(
@@ -110,8 +134,7 @@ class acceuil extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.vaccines,
-                              color: Colors.white, size: 30),
+                          Icon(Icons.vaccines, color: Colors.white, size: 30),
                           SizedBox(width: 5),
                           Text(
                             'Consulter votre certificat de vaccination',
@@ -131,10 +154,8 @@ class acceuil extends StatelessWidget {
               SizedBox(height: 3),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => pass_vacc()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => pass_vacc()));
                 },
                 child: Center(
                   child: Container(
@@ -170,10 +191,8 @@ class acceuil extends StatelessWidget {
               SizedBox(height: 3),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => pass_europ()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => pass_europ()));
                 },
                 child: Center(
                   child: Container(

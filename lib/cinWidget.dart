@@ -49,7 +49,6 @@ class CinSignUp extends StatelessWidget {
               return null;
             },
             style: TextStyle(),
-            obscureText: true,
             decoration: InputDecoration(
                 filled: true,
                 hintText: "Nom",
@@ -69,7 +68,6 @@ class CinSignUp extends StatelessWidget {
               return null;
             },
             style: TextStyle(),
-            obscureText: true,
             decoration: InputDecoration(
                 filled: true,
                 hintText: "Cin",

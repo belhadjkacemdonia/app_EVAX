@@ -67,7 +67,7 @@ class pharmacieState extends State<pharmacie> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => myliste()));
 
               }else if (value == "rendez-vous") {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => gallery()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => rendez_vous()));
               } else if (value == "deconnecter") {
                 AuthService().LogOut();
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));

@@ -1,3 +1,4 @@
+import 'package:evax_app/rendez-vous.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,16 +6,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_service.dart';
 import 'gallery.dart';
 import 'login_pharmacie.dart';
+
 class myliste extends StatefulWidget {
   const myliste({super.key});
 
   @override
   mylisteState createState() => mylisteState();
 }
+
 class mylisteState extends State<myliste> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String? userUID;
-
 
   User? getCurrentUser() {
     final User? user = _auth.currentUser;
@@ -27,11 +29,9 @@ class mylisteState extends State<myliste> {
 
   @override
   void initState() {
-
     User? user = getCurrentUser();
     setState(() {
-      userUID=user!.uid;
-
+      userUID = user!.uid;
     });
     print(user!.uid);
 
@@ -47,13 +47,15 @@ class mylisteState extends State<myliste> {
           PopupMenuButton(
             onSelected: (value) {
               if (value == "myListe") {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => myliste()));
-
-              }else if (value == "rendez-vous") {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => gallery()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => myliste()));
+              } else if (value == "rendez-vous") {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => rendez_vous()));
               } else if (value == "deconnecter") {
                 AuthService().LogOut();
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPharmacie()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignInPharmacie()));
               }
             },
             itemBuilder: (BuildContext context) {
@@ -76,7 +78,11 @@ class mylisteState extends State<myliste> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('Usersph').doc(userUID!).collection("Disponibiliter").snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('Usersph')
+            .doc(userUID!)
+            .collection("Disponibiliter")
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Erreur : ${snapshot.error}');
@@ -89,14 +95,13 @@ class mylisteState extends State<myliste> {
             itemBuilder: (context, index) {
               DocumentSnapshot documentSnapshot = snapshot.data!.docs[index];
               Map<String, dynamic> data =
-              documentSnapshot.data() as Map<String, dynamic>;
+                  documentSnapshot.data() as Map<String, dynamic>;
               String? nom = data['nomVacin'] as String?;
               String? date = data['date'] as String?;
               return ListTile(
-                title: Text('nom : $nom',style: TextStyle(
-                  fontSize: 25.0)),
-                subtitle: Text('date : $date',style: TextStyle(
-                    fontSize: 25.0)),
+                title: Text('nom : $nom', style: TextStyle(fontSize: 25.0)),
+                subtitle:
+                    Text('date : $date', style: TextStyle(fontSize: 25.0)),
               );
             },
           );
