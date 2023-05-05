@@ -128,7 +128,7 @@ class _MydrawerState extends State<Mydrawer> {
                   () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => contact()))),
 
-          CustomListTile(Icons.logout, 'SignOut', () => AuthService().LogOut()),
+          CustomListTile(Icons.logout, 'Déconnecter', () => AuthService().LogOut()),
         ],
       ),
 

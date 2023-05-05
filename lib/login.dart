@@ -82,7 +82,7 @@ class _SignInState extends State<SignIn> {
                                 style: TextStyle(color: Colors.black),
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'email field must not be empty';
+                                    return 'Le champ Email ne doit pas être vide';
                                   }
                                   return null;
                                 },
@@ -102,13 +102,13 @@ class _SignInState extends State<SignIn> {
                                 obscureText: true,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'password field must not be empty';
+                                    return 'Le champ du mot de passe ne doit pas être vide';
                                   }
                                   return null;
                                 },
                                 decoration: InputDecoration(
                                     filled: true,
-                                    hintText: "Password",
+                                    hintText: "Mot de passe",
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
@@ -146,7 +146,7 @@ class _SignInState extends State<SignIn> {
                                           }
                                         },
                                         child: const Text(
-                                          'sign In',
+                                          'S"identifier',
                                           style: TextStyle(
                                             fontSize: 20,
                                             shadows: [
@@ -180,7 +180,7 @@ class _SignInState extends State<SignIn> {
                                                     SignUp()));
                                       },
                                       child: Text(
-                                        'Dont have an account ?',
+                                        'Vous n"avez pas de compte ?',
                                         style: TextStyle(
                                           decoration: TextDecoration.underline,
                                           color: Colors.black,
@@ -192,7 +192,7 @@ class _SignInState extends State<SignIn> {
                               TextButton(
                                 onPressed: () {},
                                 child: Text(
-                                  'Forgot password ?',
+                                  'Mot de passe oublié?',
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: Colors.black,

@@ -24,12 +24,15 @@ class PassportSignUp extends StatelessWidget {
             controller: prenomController,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Prenom field must not be empty';
+                return 'Le champ Prénom ne doit pas être vide';
+              } else if (value.trim().length < 3) {
+                return 'Le prénom doit comporter au moins 3 caractère';
               }
               return null;
             },
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(),
             decoration: InputDecoration(
+              filled: true,
               hintText: "Prénom",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -43,13 +46,14 @@ class PassportSignUp extends StatelessWidget {
             controller: nameController,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Nom field must not be empty';
+                return 'Le champ Nom ne doit pas être vide';
+              } else if (value.trim().length < 3) {
+                return 'Le nom doit comporter au moins 3 caractères';
               }
               return null;
             },
-            style: TextStyle(),
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
-                filled: true,
                 hintText: "Nom",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -62,14 +66,16 @@ class PassportSignUp extends StatelessWidget {
             controller: passportController,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Passport field must not be empty';
+                return 'Le champ du Passport ne doit pas être vide';
+              } else if (value.trim().length != 8 || int.tryParse(value.trim()) == null) {
+                return 'Le passeport doit comporter exactement 8 chiffres';
               }
               return null;
             },
             style: TextStyle(),
             decoration: InputDecoration(
                 filled: true,
-                hintText: "Pasport",
+                hintText: "Passport",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),
@@ -82,7 +88,7 @@ class PassportSignUp extends StatelessWidget {
             style: TextStyle(color: Colors.black),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'email field must not be empty';
+                return 'Le champ Email ne doit pas être vide';
               }
               return null;
             },
@@ -101,14 +107,18 @@ class PassportSignUp extends StatelessWidget {
             style: TextStyle(),
             obscureText: true,
             validator: (value) {
-              if (value!.isEmpty) {
-                return 'password field must not be empty';
+              if (value == null || value.isEmpty) {
+                return 'Le champ du mot de passe ne doit pas être vide';
+              } else if (value.length < 6) {
+                return 'Le mot de passe doit contenir au moins 6 caractères';
+              } else if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])').hasMatch(value)) {
+                return 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre';
               }
               return null;
             },
             decoration: InputDecoration(
                 filled: true,
-                hintText: "Password",
+                hintText: 'Mot de passe',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),

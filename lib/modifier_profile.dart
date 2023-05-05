@@ -76,7 +76,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
               child: Scaffold(
                   appBar: AppBar(
                     title: Text(
-                      "Edit Profile",
+                      "Editer le profil",
                     ),
                   ),
                   body: Container(
@@ -130,7 +130,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             ),
                             child: Center(
                               child: Text(
-                                "Update Profile",
+                                "Mettre à jour le profil",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 15),

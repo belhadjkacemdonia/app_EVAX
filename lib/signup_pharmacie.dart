@@ -45,7 +45,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                                 child: Container(
                                   padding: EdgeInsets.only(top: 100),
                                   child: const Text(
-                                    'Inscription \n',
+                                    'Inscription\n',
                                     style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 40,
@@ -65,7 +65,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
 
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Nom field must not be empty';
+                              return 'Le champ du nom de la pharmacie ne doit pas être vide';
                             }
                             return null;
                           },
@@ -85,14 +85,16 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           controller: phoneController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Phone field must not be empty';
+                              return 'Le champ Téléphone ne doit pas être vide';
+                            } else if (value.trim().length != 8 ) {
+                              return 'Le numéro de téléphone doit comporter au moins 3 caractères';
                             }
                             return null;
                           },
                           style: TextStyle(),
                           decoration: InputDecoration(
                               filled: true,
-                              hintText: "Phone",
+                              hintText: "Téléphone",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               )),
@@ -104,14 +106,14 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           controller: localController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Location field must not be empty';
+                              return 'Le champ de localisation ne doit pas être vide';
                             }
                             return null;
                           },
                           style: TextStyle(),
                           decoration: InputDecoration(
                               filled: true,
-                              hintText: "Location",
+                              hintText: "Localisation",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               )),
@@ -124,7 +126,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           style: TextStyle(color: Colors.black),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'email field must not be empty';
+                              return 'Le champ Email ne doit pas être vide';
                             }
                             return null;
                           },
@@ -143,14 +145,18 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                           style: TextStyle(),
                           obscureText: true,
                           validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'password field must not be empty';
+                            if (value == null || value.isEmpty) {
+                              return 'Le champ du mot de passe ne doit pas être vide';
+                            } else if (value.length < 6) {
+                              return 'Le mot de passe doit contenir au moins 6 caractères';
+                            } else if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])').hasMatch(value)) {
+                              return 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre';
                             }
                             return null;
                           },
                           decoration: InputDecoration(
                               filled: true,
-                              hintText: "Password",
+                              hintText: 'Mot de passe',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               )),
@@ -194,7 +200,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                                               context, MaterialPageRoute(builder: (context) => SignInPharmacie()));
                                           }},
                                         child: const Text(
-                                          'sign up',
+                                          'S"inscrire',
                                           style: TextStyle(
                                             fontSize: 20,
                                             shadows: [
@@ -224,7 +230,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                                       Get.to(SignInPharmacie());
                                     },
                                     child: Text(
-                                      'Already have an account ?',
+                                      'Vous avez déjà un compte ?',
                                       style: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: Colors.black,

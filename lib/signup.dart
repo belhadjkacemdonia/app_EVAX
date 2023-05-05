@@ -159,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                                           }
                                         },
                                         child: const Text(
-                                          'sign up',
+                                          'S"inscrire',
                                           style: TextStyle(
                                             fontSize: 20,
                                             shadows: [
@@ -189,7 +189,7 @@ class _SignUpState extends State<SignUp> {
                                       Get.to(SignIn());
                                     },
                                     child: Text(
-                                      'Already have an account ?',
+                                      'Vous avez déjà un compte ?',
                                       style: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: Colors.black,
