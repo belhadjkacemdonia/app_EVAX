@@ -40,7 +40,7 @@ class rendez_vousState extends State<rendez_vous> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ma Liste'),
+        title: Text('Liste des rendez-vous'),
         actions: [
           PopupMenuButton(
             onSelected: (value) {

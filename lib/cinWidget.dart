@@ -58,6 +58,7 @@ class CinSignUp extends StatelessWidget {
                 hintText: "Prénom",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
+
                 )),
           ),
           SizedBox(
