@@ -1,17 +1,15 @@
-import 'package:evax_app/auth_service.dart';
-import 'package:evax_app/signup_pharmacie.dart';
-import 'package:evax_app/utils/color_utils.dart';
+import 'package:evax_app/signup.dart';
 import 'package:flutter/material.dart';
-import 'drawer.dart';
+import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'auth_service.dart';
 import 'login_pharmacie.dart';
-import 'profil.dart';
-import 'signup.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _SignInState createState() => _SignInState();
 }
 
@@ -27,21 +25,58 @@ class _SignInState extends State<SignIn> {
     super.dispose();
   }
 
+  void Pass_oublie(BuildContext context, String email) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      Get.snackbar(
+        "Requis",
+        "E-mail de réinitialisation du mot de passe envoyé !",
+        icon: Icon(Icons.warning_amber_rounded),
+        backgroundColor: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      Get.snackbar(
+        "Requis",
+        e.message.toString(),
+        icon: Icon(
+          Icons.warning_amber_rounded,
+          color: Colors.deepPurple,
+        ),
+        colorText: Colors.deepPurple,
+        backgroundColor: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+
+      Navigator.of(context).pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.red.shade900,
-            Colors.red.shade300,
-            Colors.blue.shade200,
-          ],
-        )),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.red.shade900,
+              Colors.red.shade300,
+              Colors.blue.shade200,
+            ],
+          ),
+        ),
         child: Center(
           child: Stack(
             children: [
@@ -49,8 +84,6 @@ class _SignInState extends State<SignIn> {
                 child: Form(
                   key: _formKey,
                   child: Container(
-                    // padding:
-                    //     EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.44),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -107,34 +140,31 @@ class _SignInState extends State<SignIn> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                    filled: true,
-                                    hintText: "Mot de passe",
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
+                                  filled: true,
+                                  hintText: "Mot de passe",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
                               ),
                               SizedBox(
                                 height: 30,
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
                                     width: 250,
                                     height: 50,
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 80.0),
+                                      padding: const EdgeInsets.only(left: 80.0),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           foregroundColor: Colors.white,
                                           backgroundColor: Color(000000),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0),
+                                            borderRadius: BorderRadius.circular(30.0),
                                           ),
-                                          // foreground
                                         ),
                                         onPressed: () {
                                           if (_formKey.currentState!
@@ -146,7 +176,7 @@ class _SignInState extends State<SignIn> {
                                           }
                                         },
                                         child: const Text(
-                                          'S"identifier',
+                                          "S'identifier",
                                           style: TextStyle(
                                             fontSize: 20,
                                             shadows: [
@@ -168,29 +198,30 @@ class _SignInState extends State<SignIn> {
                                 height: 40,
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SignUp()));
-                                      },
-                                      child: Text(
-                                        'Vous n"avez pas de compte ?',
-                                        style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                        ),
-                                      )),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => SignUp()),
+                                      );
+                                    },
+                                    child: Text(
+                                      "Vous n'avez pas de compte ?",
+                                      style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Pass_oublie(context, emailController.text.trim());
+                                },
                                 child: Text(
                                   'Mot de passe oublié?',
                                   style: TextStyle(
@@ -201,29 +232,27 @@ class _SignInState extends State<SignIn> {
                                 ),
                               ),
                               TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignInPharmacie()));
-                                  },
-                                  child: Text(
-                                    'SignIn pharmacie',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                    ),
-                                  )),
-
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => SignInPharmacie()),
+                                  );
+                                },
+                                child: Text(
+                                  'SignIn pharmacie',
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
                               SizedBox(
                                 height: 230,
                               ),
-
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -236,3 +265,4 @@ class _SignInState extends State<SignIn> {
     );
   }
 }
+

@@ -200,7 +200,7 @@ class _SignUp_PharmacieState extends State<SignUp_Pharmacie> {
                                               context, MaterialPageRoute(builder: (context) => SignInPharmacie()));
                                           }},
                                         child: const Text(
-                                          'S"inscrire',
+                                          "S'inscrire",
                                           style: TextStyle(
                                             fontSize: 20,
                                             shadows: [

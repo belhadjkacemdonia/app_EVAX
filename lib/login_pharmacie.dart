@@ -143,7 +143,7 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
 
                                           } },
                                         child: const Text(
-                                          'S"identifier',
+                                          "S'identifier",
                                           style: TextStyle(
                                             fontSize: 20,
                                             shadows: [

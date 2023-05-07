@@ -159,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                                           }
                                         },
                                         child: const Text(
-                                          'S"inscrire',
+                                          "S'inscrire",
                                           style: TextStyle(
                                             fontSize: 20,
                                             shadows: [

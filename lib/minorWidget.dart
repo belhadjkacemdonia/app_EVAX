@@ -27,15 +27,16 @@ class MinorSignUp extends StatelessWidget {
             controller: prenomController,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'First Name field must not be empty';
+                return 'Le champ Prénom ne doit pas être vide';
               } else if (value.trim().length < 3) {
-                return 'First Name must be at least 3 characters long';
+                return 'Le prénom doit comporter au moins 3 caractère';
               }
               return null;
             },
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(),
             decoration: InputDecoration(
-              hintText: "First Name ",
+              filled: true,
+              hintText: "Prénom",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -48,16 +49,15 @@ class MinorSignUp extends StatelessWidget {
             controller: nameController,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Last Name field must not be empty';
+                return 'Le champ Nom ne doit pas être vide';
               } else if (value.trim().length < 3) {
-                return 'Last Name must be at least 3 characters long';
+                return 'Le nom doit comporter au moins 3 caractères';
               }
               return null;
             },
-            style: TextStyle(),
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
-                filled: true,
-                hintText: "Last Name",
+                hintText: "Nom",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),
@@ -69,16 +69,16 @@ class MinorSignUp extends StatelessWidget {
             controller: namepereController,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Father"s name field must not be empty';
+                return 'Le champ du nom du père ne doit pas être vide';
               } else if (value.trim().length < 3) {
-                return 'Father"s name must be at least 3 characters long';
+                return 'Le nom du père doit comporter au moins 3 caractères';
               }
               return null;
             },
             style: TextStyle(),
             decoration: InputDecoration(
                 filled: true,
-                hintText: "Father's name",
+                hintText: "Le nom du père",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),
@@ -90,16 +90,16 @@ class MinorSignUp extends StatelessWidget {
             controller: namemereController,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Mother"s name field must not be empty';
+                return 'Le champ du nom de la mère ne doit pas être vide';
               } else if (value.trim().length < 3) {
-                return 'Mother"s name must be at least 3 characters long';
+                return 'Le nom de la mère doit comporter au moins 3 caractères';
               }
               return null;
             },
             style: TextStyle(),
             decoration: InputDecoration(
                 filled: true,
-                hintText: "Mother's name",
+                hintText: "Le nom de la mère",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),
@@ -112,7 +112,7 @@ class MinorSignUp extends StatelessWidget {
             style: TextStyle(color: Colors.black),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'email field must not be empty';
+                return 'Le champ Email ne doit pas être vide';
               }
               return null;
             },
@@ -132,17 +132,17 @@ class MinorSignUp extends StatelessWidget {
             obscureText: true,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Password field must not be empty';
+                return 'Le champ du mot de passe ne doit pas être vide';
               } else if (value.length < 6) {
-                return 'Password must be at least 6 characters long';
+                return 'Le mot de passe doit contenir au moins 6 caractères';
               } else if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])').hasMatch(value)) {
-                return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+                return 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre';
               }
               return null;
             },
             decoration: InputDecoration(
                 filled: true,
-                hintText: "Password",
+                hintText: 'Mot de passe',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),
