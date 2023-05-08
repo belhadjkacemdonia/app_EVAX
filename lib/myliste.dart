@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'auth_service.dart';
 import 'gallery.dart';
+import 'login.dart';
 import 'login_pharmacie.dart';
 
 class myliste extends StatefulWidget {
@@ -55,7 +56,7 @@ class mylisteState extends State<myliste> {
               } else if (value == "deconnecter") {
                 AuthService().LogOut();
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignInPharmacie()));
+                    MaterialPageRoute(builder: (context) => SignIn()));
               }
             },
             itemBuilder: (BuildContext context) {

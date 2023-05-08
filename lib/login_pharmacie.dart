@@ -177,7 +177,7 @@ class _SignInPharmacieState extends State<SignInPharmacie> {
                                                     SignUp_Pharmacie()));
                                       },
                                       child: Text(
-                                        'Vous n"avez pas de compte ?',
+                                        "Vous n'avez pas de compte ?",
                                         style: TextStyle(
                                           decoration: TextDecoration.underline,
                                           color: Colors.black,

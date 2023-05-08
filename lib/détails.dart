@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'acceuil.dart';
+
 class details extends StatefulWidget {
   final DocumentSnapshot documentSnapshot;
 
@@ -112,7 +114,7 @@ class _detailsState extends State<details> {
                                     'nomph': nomph,
                                     'Phone': Phone,
                                   });
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => reservation()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => acceuil()));
                                 },
                                 child: Text('oui'),
                               ),
