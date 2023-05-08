@@ -49,6 +49,7 @@ class AuthService {
 
   Future<void> LogOut() async {
     await FirebaseAuth.instance.signOut();
+
   }
 
   Future sendVerificationEmail() async {
